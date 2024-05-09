@@ -1,0 +1,9 @@
+{
+"name": "vue.min.js",
+"version": "14.0.0-7",
+"description": "",
+"main": "package.js",
+"dependencies": {
+	"vue-cookies": "^1.8.4"
+	}
+}
