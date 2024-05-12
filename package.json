@@ -1,6 +1,6 @@
 {
 "name": "vue.min.js",
-"version": "14.0.0-7",
+"version": "14.0.0-16",
 "description": "",
 "main": "package.js",
 "dependencies": {
