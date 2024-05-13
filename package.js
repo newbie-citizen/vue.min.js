@@ -1,5 +1,6 @@
 import {createApp, toRefs, ref, reactive, onMounted, onUnmounted, onUpdated, computed, watch, watchEffect, inject, isProxy, toRaw} from "vue";
 import {useRoute, useRouter, createRouter, createWebHistory, createWebHashHistory} from "vue-router";
+import $__lib from "lib.min.js";
 
 function vue () {
 	return this;
@@ -60,6 +61,6 @@ vue.on.progress.data = reactive ({});
 vue.emit = function (key, ... value) { var data; for (var i in vue.event.data [key]) data = vue.event.data [key][i].call (data, ... value); return data; }
 
 export var the = function () {}
-export var lib = Symbol.$$$;
+export var lib = $__lib;
 export var library = function () {}
 export default vue;
