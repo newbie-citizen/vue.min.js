@@ -5,7 +5,7 @@
 "main": "package.js",
 "dependencies": {
 	"vue-cookies": "^1.8.4",
-	"lib.min.js": "^15.0.0-0",
-	"library.min.js": "^15.0.0-0"
+	"lib.min.js": "^15.0.0-2",
+	"library.min.js": "^15.0.0-2"
 	}
 }

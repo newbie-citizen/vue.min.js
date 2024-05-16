@@ -1,6 +1,7 @@
 import {createApp, toRefs, ref, reactive, onMounted, onUnmounted, onUpdated, computed, watch, watchEffect, inject, isProxy, toRaw} from "vue";
 import {useRoute, useRouter, createRouter, createWebHistory, createWebHashHistory} from "vue-router";
 import $__lib from "lib.min.js";
+import "lib.min.js/plugin";
 
 function vue () {
 	return this;
