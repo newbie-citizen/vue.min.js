@@ -22,6 +22,7 @@ vue.router = function (option) { return vue.router.create (option); }
 vue.router.use = function () { return vue.router.data = useRouter (); }
 vue.router.create = function (option) { return createRouter ({history: createWebHistory (option.history), routes: option.data}); }
 vue.router.previous = function (i = 1) { vue.router.data.go (- i); }
+vue.router.path = function (path) { return vue.router.data.currentRoute.value.path = path; }
 vue.router.try_catch = "/:catchAll(.*)";
 vue.page = function () {}
 vue.page.data = reactive ({});
