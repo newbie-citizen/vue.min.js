@@ -9,11 +9,12 @@ function vue () {
 
 vue.create = createApp;
 vue.inject = inject;
+vue.slot = function (v) { return v.$slots; }
 vue.c_data = function (v) { return v.$slots.default; }
 vue.reference = function (data) { return ref (data || null); }
 vue.reactive = function (key, value) { if (value) for (var i in value) key [i] = value [i]; else return reactive (key || {}); return key; }
 vue.reactive.clear = function (data) { for (var i in data) delete data [i]; }
-vue.watch = function (... data) { return watch (... data); }
+vue.watch = function (... proxy) { if (proxy.length === 3) return watch (proxy [0], proxy [2], proxy [1]); else return watch (... proxy); }
 vue.model = function (model) { return vue.model.data [model]; }
 vue.model.delete = function (model) { delete vue.model.data [model]; }
 vue.model.data = reactive ({});
@@ -52,15 +53,22 @@ vue.script = function (v = {}) {
 
 vue.event = function () {}
 vue.event.data = {}
+vue.emit = function (key, ... value) { var data; for (var i in vue.event.data [key]) data = vue.event.data [key][i].call (data, ... value); return data; }
 vue.on = function (key, value) { if (vue.event.data [key]) vue.event.data [key].push (value); else vue.event.data [key] = [value]; }
 vue.on.line = function (line, context) { if (arguments.length) { if (context) context (); return vue.on.line.status.value = line; } else return vue.on.line.status.value; }
 vue.on.line.status = ref (null);
 vue.on.progress = function () { var progress = 0; for (var i in vue.on.progress.data) progress ++; return progress; }
-vue.on.progress.insert = function (progress) { return vue.on.progress.data [progress] = true; }
-vue.on.progress.remove = vue.on.progress.ready = function (progress) { return delete vue.on.progress.data [progress]; }
-vue.on.progress.clear = function (progress) { for (var i in vue.on.progress.data) delete vue.on.progress.data [i]; }
+vue.on.progress.push = function (progress) { return vue.on.progress.data [progress] = true; }
+vue.on.progress.clear = function (progress) { if (progress) delete vue.on.progress.data [progress]; else for (var i in vue.on.progress.data) delete vue.on.progress.data [i]; }
 vue.on.progress.data = reactive ({});
-vue.emit = function (key, ... value) { var data; for (var i in vue.event.data [key]) data = vue.event.data [key][i].call (data, ... value); return data; }
+vue.on.loading = function () { return vue.on.loading.data.value.length; }
+vue.on.loading.push = function (loading) { return vue.on.loading.data.value.push (loading); }
+vue.on.loading.clear = function (loading) {
+	if (loading) vue.on.loading.data.value.splice (vue.on.loading.data.value.indexOf (loading));
+	else vue.on.loading.data.value = [];
+	}
+vue.on.loading.data = ref ([]);
+vue.on.loading.status = ref ("off");
 
 export var the = function () {}
 export var lib = $__lib;
