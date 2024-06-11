@@ -26,8 +26,8 @@ vue.router.previous = function (i = 1) { vue.router.data.go (- i); }
 vue.router.next = function (i = 1) { vue.router.data.go (i); }
 vue.router.path = function (path) { return vue.router.data.currentRoute.value.path = path; }
 vue.router.register = function (router, dom) { return vue.$__router [router] = dom; }
-vue.router.link = function (type, param) { if (param) return vue.router.link.data [type].to_param (param); else return vue.router.link.data [type]; }
-vue.router.link.data = reactive ({});
+vue.router.regex = function (type, param) { if (param) return vue.router.regex.data [type].to_param (param); else return vue.router.regex.data [type]; }
+vue.router.regex.data = reactive ({});
 vue.router.url = function (router) { vue.router.url.parse (router); }
 vue.router.url.path = reactive ({});
 vue.router.slot = ref ("index");

@@ -1,11 +1,11 @@
 {
 "name": "vue.min.js",
-"version": "15.0.0-4",
+"version": "15.0.0-5",
 "description": "",
 "main": "package.js",
 "dependencies": {
 	"vue-cookies": "^1.8.4",
-	"lib.min.js": "^15.0.0-4",
-	"library.min.js": "^15.0.0-4"
+	"lib.min.js": "^15.0.0-5",
+	"library.min.js": "^15.0.0-5"
 	}
 }
