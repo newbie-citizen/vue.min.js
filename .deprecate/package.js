@@ -33,23 +33,23 @@ vue.router.url.path = reactive ({});
 vue.router.slot = ref ("index");
 vue.router.exist = ref (null);
 vue.router.try_catch = "/:catchAll(.*)";
-// vue.router.prefix = "router ";
-// vue.router.index_of = "router index";
-// vue.router.error_of = "router error:internal";
+vue.router.prefix = "router ";
+vue.router.index_of = "router index";
+vue.router.error_of = "router error:internal";
 vue.router.$__data = [];
 vue.$__router = {}
 
-vue.route = function (path) { var route = vue.route.$__path [path || vue.route.path ()]; return route || {} }
+vue.route = function (path) { var route = vue.route.url.path [path || vue.route.path ()]; if (route) return route; else return {} }
 vue.route.initialize = function () { return vue.route.data = useRoute (); }
 vue.route.path = function (path) { if (path) return vue.route.data.path === path; else return vue.route.data.path; }
-vue.route.param = function (param) { if (param) return vue.route.$__param [param]; else return vue.route.$__param; }
+vue.route.path.properties = reactive ({});
+vue.route.param = function (param) { if (param) return vue.route.param.data [param]; else return vue.route.param.data; }
 vue.route.param.get = function (param) { if (param) return vue.route.data.params [param]; else return vue.route.data.params; }
+vue.route.param.data = reactive ({});
 vue.route.query = function (query) { if (query) { if (typeof query === "string") return vue.route.data.query [query]; else { for (var i in query) if (vue.route.data.query [i] !== query [i]) return false; return true; } } else return vue.route.data.query; }
 vue.route.source = function () { var matched; if (matched = vue.route.data.matched [0]) return {name: matched.name, path: matched.path} }
 vue.route.type = function (path) { return vue.route (path).type; }
 vue.route.exist = function (path) { if (path) return vue.router.exist.value = path in vue.route.url.path; else return vue.router.exist.value; }
-vue.route.$__path = reactive ({});
-vue.route.$__param = reactive ({});
 // vue.route.url = function () {}
 // vue.route.url.path = reactive ({});
 
