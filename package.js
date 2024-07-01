@@ -18,9 +18,10 @@ vue.watch = function (... proxy) { if (proxy.length === 3) return watch (proxy [
 vue.model = function (model) { return vue.model.data [model]; }
 vue.model.delete = function (model) { delete vue.model.data [model]; }
 vue.model.data = reactive ({});
+vue.$__db = reactive ({});
 
 vue.router = function (option) { return vue.router.create (option); }
-vue.router.initialize = function () { return vue.router.data = useRouter (); }
+vue.router.start = function () { return vue.router.data = useRouter (); }
 vue.router.create = function (option) { return createRouter ({history: createWebHistory (option.history), routes: option.data}); }
 vue.router.previous = function (i = 1) { vue.router.data.go (- i); }
 vue.router.next = function (i = 1) { vue.router.data.go (i); }
@@ -40,7 +41,7 @@ vue.router.$__data = [];
 vue.$__router = {}
 
 vue.route = function (path) { var route = vue.route.$__path [path || vue.route.path ()]; return route || {} }
-vue.route.initialize = function () { return vue.route.data = useRoute (); }
+vue.route.start = function () { return vue.route.data = useRoute (); }
 vue.route.path = function (path) { if (path) return vue.route.data.path === path; else return vue.route.data.path; }
 vue.route.param = function (param) { if (param) return vue.route.$__param [param]; else return vue.route.$__param; }
 vue.route.param.get = function (param) { if (param) return vue.route.data.params [param]; else return vue.route.data.params; }
